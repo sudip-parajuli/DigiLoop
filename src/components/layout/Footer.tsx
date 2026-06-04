@@ -1,0 +1,110 @@
+import Link from "next/link";
+import { MessageCircle } from "lucide-react";
+import { Instagram, Twitter, Linkedin, Youtube } from "@/components/ui/BrandIcons";
+
+const footerLinks = {
+  Services: [
+    { label: "Web Design", href: "/services#web" },
+    { label: "Digital Invitations", href: "/services#invitations" },
+    { label: "Social Media", href: "/services#social" },
+    { label: "AI Integration", href: "/services#ai" },
+    { label: "Graphic Design", href: "/services#graphic" },
+  ],
+  Company: [
+    { label: "About", href: "/about" },
+    { label: "Work", href: "/work" },
+    { label: "Contact", href: "/contact" },
+  ],
+};
+
+const socials = [
+  { icon: Instagram, href: "https://instagram.com/digiloop.np", label: "Instagram" },
+  { icon: Twitter, href: "https://twitter.com/digiloop_np", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/digiloop", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com/@digiloop", label: "YouTube" },
+];
+
+export default function Footer() {
+  return (
+    <footer className="footer">
+      <div className="container">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 pb-12 border-b border-white/10">
+          {/* Brand */}
+          <div className="lg:col-span-2">
+            <Link href="/" className="inline-flex items-center gap-2 mb-4 group" style={{ cursor: "none" }}>
+              <div className="w-9 h-9 rounded-lg bg-[var(--color-accent2)] flex items-center justify-center">
+                <span className="text-white font-bold text-sm font-mono">DL</span>
+              </div>
+              <span
+                className="text-2xl font-semibold text-white"
+                style={{ fontFamily: "var(--font-display)" }}
+              >
+                DigiLoop
+              </span>
+            </Link>
+            <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
+              We make your brand live in every pixel. A full-service digital agency based in Nepal.
+            </p>
+            {/* Social Icons */}
+            <div className="flex items-center gap-3">
+              {socials.map(({ icon: Icon, href, label }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={label}
+                  className="social-icon !border-white/10 !text-white/50 hover:!border-[var(--color-accent2)] hover:!text-[var(--color-accent2)]"
+                >
+                  <Icon size={16} />
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* Nav Links */}
+          {Object.entries(footerLinks).map(([title, links]) => (
+            <div key={title}>
+              <h4
+                className="text-white text-sm font-semibold mb-4 tracking-wide"
+                style={{ fontFamily: "var(--font-mono)", letterSpacing: "0.08em" }}
+              >
+                {title}
+              </h4>
+              <ul className="space-y-3">
+                {links.map((link) => (
+                  <li key={link.label}>
+                    <Link href={link.href} className="footer-link hover:translate-x-1 inline-block transition-transform duration-200">
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          ))}
+        </div>
+
+        {/* Bottom Bar */}
+        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
+          <p className="text-white/30 text-sm">
+            © {new Date().getFullYear()} DigiLoop. All rights reserved.
+          </p>
+          <p className="text-white/30 text-sm flex items-center gap-1">
+            Made with <span className="text-red-400">❤️</span> in Nepal
+          </p>
+        </div>
+      </div>
+
+      {/* WhatsApp FAB */}
+      <a
+        href="https://wa.me/9779800000000"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="whatsapp-fab"
+        aria-label="Chat on WhatsApp"
+      >
+        <MessageCircle size={24} className="text-white" />
+      </a>
+    </footer>
+  );
+}
