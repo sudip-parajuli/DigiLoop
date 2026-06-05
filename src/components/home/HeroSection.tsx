@@ -3,21 +3,20 @@
 import { useEffect, useRef } from "react";
 import Link from "next/link";
 import { ArrowRight } from "lucide-react";
+import PortfolioCarousel from "@/components/home/PortfolioCarousel";
 
 export default function HeroSection() {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const headlineRef = useRef<HTMLHeadingElement>(null);
   const subRef = useRef<HTMLParagraphElement>(null);
   const ctaRef = useRef<HTMLDivElement>(null);
-  const sceneRef = useRef<any>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
 
-  // Three.js scene
+  // Three.js scene — desktop only
   useEffect(() => {
     const canvas = canvasRef.current;
     if (!canvas) return;
-
-    // Skip on mobile for performance
-    if (window.innerWidth < 768) return;
+    if (window.innerWidth < 1024) return;
 
     let renderer: any, scene: any, camera: any, group: any;
     let animId: number;
@@ -39,7 +38,6 @@ export default function HeroSection() {
       group = new THREE.Group();
       scene.add(group);
 
-      // Create multiple icosahedral wireframe meshes
       const geometries = [
         new THREE.IcosahedronGeometry(1.2, 1),
         new THREE.IcosahedronGeometry(0.7, 0),
@@ -49,19 +47,13 @@ export default function HeroSection() {
       ];
 
       const positions = [
-        [0, 0, 0],
-        [2.5, 1, -1],
-        [-2.5, -0.5, -1.5],
-        [1.5, -1.5, -0.5],
-        [-1.5, 1.5, -0.5],
+        [0, 0, 0], [2.5, 1, -1], [-2.5, -0.5, -1.5], [1.5, -1.5, -0.5], [-1.5, 1.5, -0.5],
       ];
 
       geometries.forEach((geo, i) => {
         const mat = new THREE.MeshBasicMaterial({
-          color: 0x1A1A2E,
-          wireframe: true,
-          opacity: i === 0 ? 0.18 : 0.1,
-          transparent: true,
+          color: 0x1A1A2E, wireframe: true,
+          opacity: i === 0 ? 0.15 : 0.08, transparent: true,
         });
         const mesh = new THREE.Mesh(geo, mat);
         const [x, y, z] = positions[i];
@@ -69,22 +61,16 @@ export default function HeroSection() {
         group.add(mesh);
       });
 
-      sceneRef.current = { scene, camera, renderer, group };
-
       const animate = () => {
         animId = requestAnimationFrame(animate);
         targetRotX += (mouseY * 0.0003 - targetRotX) * 0.05;
         targetRotY += (mouseX * 0.0003 - targetRotY) * 0.05;
-
         group.rotation.x += (targetRotX - group.rotation.x) * 0.05;
         group.rotation.y += (targetRotY - group.rotation.y) * 0.05;
-
-        // Slow drift
         group.children.forEach((mesh: any, i: number) => {
           mesh.rotation.x += 0.002 * (i % 2 === 0 ? 1 : -1);
           mesh.rotation.y += 0.003 * (i % 2 === 0 ? 1 : -1);
         });
-
         renderer.render(scene, camera);
       };
       animate();
@@ -123,6 +109,7 @@ export default function HeroSection() {
       const headline = headlineRef.current;
       const sub = subRef.current;
       const cta = ctaRef.current;
+      const carousel = carouselRef.current;
 
       if (!headline) return;
 
@@ -136,7 +123,8 @@ export default function HeroSection() {
         { opacity: 1, y: 0, duration: 0.8, stagger: 0.08, ease: "power4.out" }
       )
         .fromTo(sub, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3")
-        .fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3");
+        .fromTo(cta, { opacity: 0, y: 20 }, { opacity: 1, y: 0, duration: 0.6, ease: "power3.out" }, "-=0.3")
+        .fromTo(carousel, { opacity: 0, y: 32 }, { opacity: 1, y: 0, duration: 0.8, ease: "power3.out" }, "-=0.2");
 
       return () => { split.revert(); tl.kill(); };
     };
@@ -144,27 +132,27 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative min-h-screen flex flex-col items-center justify-center overflow-hidden bg-[var(--color-bg)]">
-      {/* Three.js Canvas */}
+    <section className="relative overflow-hidden bg-[var(--color-bg)] pt-28 md:pt-32 pb-16">
+      {/* Three.js canvas — desktop only, behind text */}
       <canvas
         ref={canvasRef}
         className="absolute inset-0 w-full h-full pointer-events-none"
-        style={{ opacity: 0.9 }}
+        style={{ opacity: 0.85 }}
       />
 
-      {/* Mobile gradient bg (replaces Three.js) */}
+      {/* Mobile gradient bg */}
       <div
-        className="absolute inset-0 md:hidden"
+        className="absolute inset-0 lg:hidden"
         style={{
-          background: "radial-gradient(ellipse at 50% 50%, rgba(79,70,229,0.08) 0%, transparent 70%)",
+          background: "radial-gradient(ellipse at 50% 30%, rgba(79,70,229,0.07) 0%, transparent 70%)",
         }}
       />
 
-      {/* Content */}
-      <div className="container relative z-10 text-center pt-24 pb-16">
+      {/* ── Text content ── */}
+      <div className="container relative z-10 text-center">
         {/* Badge */}
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-border)] bg-white/60 backdrop-blur-sm mb-8 text-sm text-[var(--color-muted)]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-border)] bg-white/60 backdrop-blur-sm mb-7 text-sm text-[var(--color-muted)]"
           data-reveal="scale"
           data-delay="2.1"
         >
@@ -175,7 +163,7 @@ export default function HeroSection() {
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-[var(--color-ink)] mb-6 max-w-4xl mx-auto"
+          className="text-[var(--color-ink)] mb-5 max-w-4xl mx-auto"
           style={{ opacity: 0 }}
         >
           We make your brand{" "}
@@ -186,7 +174,7 @@ export default function HeroSection() {
         {/* Sub */}
         <p
           ref={subRef}
-          className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-10"
+          className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-8"
           style={{ opacity: 0 }}
         >
           From websites to AI tools — DigiLoop builds digital experiences that captivate, convert, and grow your business.
@@ -195,7 +183,7 @@ export default function HeroSection() {
         {/* CTAs */}
         <div
           ref={ctaRef}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
           style={{ opacity: 0 }}
         >
           <Link href="/work" className="btn btn-primary px-8 py-4 text-base">
@@ -206,21 +194,16 @@ export default function HeroSection() {
             Get in Touch
           </Link>
         </div>
-
-        {/* Scroll Indicator */}
-        <div
-          className="scroll-indicator mt-20 mx-auto"
-          data-reveal="up"
-          data-delay="2.8"
-        >
-          <div className="scroll-dot" />
-          <span className="text-xs text-[var(--color-muted)] font-mono tracking-widest uppercase">Scroll</span>
-        </div>
       </div>
 
-      {/* Bottom gradient fade */}
+      {/* ── Portfolio carousel — full-width below CTAs ── */}
+      <div ref={carouselRef} style={{ opacity: 0 }}>
+        <PortfolioCarousel />
+      </div>
+
+      {/* Bottom gradient fade into next section */}
       <div
-        className="absolute bottom-0 left-0 right-0 h-32 pointer-events-none"
+        className="absolute bottom-0 left-0 right-0 h-24 pointer-events-none"
         style={{ background: "linear-gradient(to bottom, transparent, var(--color-bg))" }}
       />
     </section>

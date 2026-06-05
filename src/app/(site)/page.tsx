@@ -3,7 +3,6 @@ import HeroSection from "@/components/home/HeroSection";
 import BrandsStrip from "@/components/home/BrandsStrip";
 import MarqueeTicker from "@/components/ui/MarqueeTicker";
 import ServicesSection from "@/components/home/ServicesSection";
-import PortfolioCarousel from "@/components/home/PortfolioCarousel";
 import ProcessSection from "@/components/home/ProcessSection";
 import StatsSection from "@/components/home/StatsSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
@@ -18,11 +17,11 @@ export const metadata: Metadata = {
 export default function HomePage() {
   return (
     <>
+      {/* HeroSection includes the PortfolioCarousel inline below the CTAs */}
       <HeroSection />
       <BrandsStrip />
       <MarqueeTicker />
       <ServicesSection />
-      <PortfolioCarousel />
       <ProcessSection />
       <StatsSection />
       <TestimonialsSection />
