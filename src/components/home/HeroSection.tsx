@@ -132,7 +132,7 @@ export default function HeroSection() {
   }, []);
 
   return (
-    <section className="relative overflow-hidden bg-[var(--color-bg)] pt-28 md:pt-32 pb-16">
+    <section className="relative overflow-hidden bg-[var(--color-bg)] pt-24 lg:pt-28 pb-10">
       {/* Three.js canvas — desktop only, behind text */}
       <canvas
         ref={canvasRef}
@@ -152,7 +152,7 @@ export default function HeroSection() {
       <div className="container relative z-10 text-center">
         {/* Badge */}
         <div
-          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-border)] bg-white/60 backdrop-blur-sm mb-7 text-sm text-[var(--color-muted)]"
+          className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--color-border)] bg-white/60 backdrop-blur-sm mb-6 text-sm text-[var(--color-muted)]"
           data-reveal="scale"
           data-delay="2.1"
         >
@@ -163,7 +163,7 @@ export default function HeroSection() {
         {/* Headline */}
         <h1
           ref={headlineRef}
-          className="text-[var(--color-ink)] mb-5 max-w-4xl mx-auto"
+          className="text-[var(--color-ink)] mb-4 max-w-4xl mx-auto"
           style={{ opacity: 0 }}
         >
           We make your brand{" "}
@@ -174,7 +174,7 @@ export default function HeroSection() {
         {/* Sub */}
         <p
           ref={subRef}
-          className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-8"
+          className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-6"
           style={{ opacity: 0 }}
         >
           From websites to AI tools — DigiLoop builds digital experiences that captivate, convert, and grow your business.
@@ -183,7 +183,7 @@ export default function HeroSection() {
         {/* CTAs */}
         <div
           ref={ctaRef}
-          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-12"
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-8"
           style={{ opacity: 0 }}
         >
           <Link href="/work" className="btn btn-primary px-8 py-4 text-base">
