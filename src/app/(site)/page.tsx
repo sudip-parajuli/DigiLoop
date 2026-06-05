@@ -1,8 +1,10 @@
 import type { Metadata } from "next";
 import HeroSection from "@/components/home/HeroSection";
+import BrandsStrip from "@/components/home/BrandsStrip";
 import MarqueeTicker from "@/components/ui/MarqueeTicker";
 import ServicesSection from "@/components/home/ServicesSection";
 import PortfolioCarousel from "@/components/home/PortfolioCarousel";
+import ProcessSection from "@/components/home/ProcessSection";
 import StatsSection from "@/components/home/StatsSection";
 import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CTAStrip from "@/components/home/CTAStrip";
@@ -17,10 +19,12 @@ export default function HomePage() {
   return (
     <>
       <HeroSection />
+      <BrandsStrip />
       <MarqueeTicker />
       <ServicesSection />
-      <StatsSection />
       <PortfolioCarousel />
+      <ProcessSection />
+      <StatsSection />
       <TestimonialsSection />
       <CTAStrip />
     </>

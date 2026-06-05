@@ -1,11 +1,10 @@
-import type { Metadata } from "next";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import PageTransition from "@/components/layout/PageTransition";
 import CustomCursor from "@/components/ui/CustomCursor";
 import SmoothLoader from "@/components/ui/SmoothLoader";
 import RevealWrapper from "@/components/ui/RevealWrapper";
-import LenisProvider from "@/components/ui/LenisProvider";
+import SmoothScrollProvider from "@/components/layout/SmoothScrollProvider";
 
 export default function SiteLayout({
   children,
@@ -13,10 +12,9 @@ export default function SiteLayout({
   children: React.ReactNode;
 }) {
   return (
-    <>
+    <SmoothScrollProvider>
       <SmoothLoader />
       <CustomCursor />
-      <LenisProvider />
       <Navbar />
       <PageTransition>
         <RevealWrapper>
@@ -26,6 +24,6 @@ export default function SiteLayout({
           <Footer />
         </RevealWrapper>
       </PageTransition>
-    </>
+    </SmoothScrollProvider>
   );
 }

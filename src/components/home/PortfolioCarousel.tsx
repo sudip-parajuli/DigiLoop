@@ -1,212 +1,252 @@
 "use client";
 
-import { useEffect, useRef } from "react";
-import { ExternalLink } from "lucide-react";
-
-const projects = [
-  {
-    title: "Sudip Parajuli",
-    category: "Portfolio · Web Design",
-    url: "https://sudip-parajuli.com.np",
-    image: "/images/projects/sudip-parajuli.jpg",
-    bg: "#1A1A2E",
-  },
-  {
-    title: "EasyMoto",
-    category: "E-Commerce · Automotive",
-    url: "https://easymoto.com.np",
-    image: "/images/projects/easymoto.jpg",
-    bg: "#0F172A",
-  },
-  {
-    title: "TechWired Solutions",
-    category: "Corporate · Tech",
-    url: "https://techwired-solutions.vercel.app",
-    image: "/images/projects/techwired.jpg",
-    bg: "#0D0D0D",
-  },
-  {
-    title: "Aryal Farm",
-    category: "Agriculture · Branding",
-    url: "https://aryalfarm.com.np",
-    image: "/images/projects/aryalfarm.jpg",
-    bg: "#0A1628",
-  },
-  {
-    title: "Amicus",
-    category: "Legal · Professional",
-    url: "https://amicus.com.np",
-    image: "/images/projects/amicus.jpg",
-    bg: "#1C1C1E",
-  },
-];
+import { useEffect, useRef, useState } from "react";
+import Image from "next/image";
+import { gsap } from "gsap";
+import { projects } from "@/lib/portfolio-data";
 
 export default function PortfolioCarousel() {
-  const swiperRef = useRef<any>(null);
+  const [active, setActive] = useState(0);
+  const [burning, setBurning] = useState(false);
+  const [isPaused, setIsPaused] = useState(false);
+  const slideRef = useRef<HTMLDivElement>(null);
+  const turbRef = useRef<SVGFETurbulenceElement>(null);
+  const displacRef = useRef<SVGFEDisplacementMapElement>(null);
 
-  useEffect(() => {
-    const init = async () => {
-      const { Swiper } = await import("swiper");
-      const { Navigation, Pagination, EffectCoverflow, Autoplay } = await import("swiper/modules");
+  const goTo = (index: number) => {
+    if (burning || index === active) return;
+    setBurning(true);
 
-      // Dynamically import swiper CSS
-      await import("swiper/css");
-      await import("swiper/css/effect-coverflow");
-      await import("swiper/css/navigation");
-      await import("swiper/css/pagination");
-
-      const swiper = new Swiper(".swiper-portfolio", {
-        modules: [Navigation, Pagination, EffectCoverflow, Autoplay],
-        effect: "coverflow",
-        grabCursor: true,
-        centeredSlides: true,
-        slidesPerView: "auto",
-        loop: true,
-        autoplay: { delay: 4000, disableOnInteraction: false, pauseOnMouseEnter: true },
-        coverflowEffect: {
-          rotate: 30,
-          stretch: 0,
-          depth: 120,
-          modifier: 1,
-          slideShadows: false,
-        },
-        navigation: {
-          nextEl: ".swiper-button-next",
-          prevEl: ".swiper-button-prev",
-        },
-        pagination: {
-          el: ".swiper-pagination",
-          clickable: true,
-        },
-        on: {
-          slideChangeTransitionStart: (swiper: any) => {
-            applyBurnEffect(swiper.slides[swiper.activeIndex]);
+    // SVG feDisplacementMap burn transition
+    if (turbRef.current && displacRef.current) {
+      gsap
+        .timeline()
+        .to(turbRef.current, {
+          attr: { baseFrequency: "0.04 0.06", numOctaves: 4 },
+          duration: 0.15,
+          ease: "power2.in",
+        })
+        .to(
+          displacRef.current,
+          {
+            attr: { scale: 80 },
+            duration: 0.25,
+            ease: "power1.in",
           },
-        },
-      });
+          "<"
+        )
+        .to(
+          slideRef.current,
+          {
+            opacity: 0,
+            duration: 0.2,
+            ease: "power2.in",
+          },
+          "-=0.1"
+        )
+        .call(() => setActive(index))
+        .to(slideRef.current, {
+          opacity: 1,
+          duration: 0.3,
+          ease: "power2.out",
+        })
+        .to(
+          displacRef.current,
+          {
+            attr: { scale: 0 },
+            duration: 0.35,
+            ease: "power2.out",
+          },
+          "<"
+        )
+        .to(
+          turbRef.current,
+          {
+            attr: { baseFrequency: "0 0", numOctaves: 1 },
+            duration: 0.3,
+            ease: "power2.out",
+            onComplete: () => setBurning(false),
+          },
+          "<"
+        );
+    } else {
+      setActive(index);
+      setBurning(false);
+    }
+  };
 
-      swiperRef.current = swiper;
-    };
+  const prev = () => goTo((active - 1 + projects.length) % projects.length);
+  const next = () => goTo((active + 1) % projects.length);
 
-    const applyBurnEffect = (slide: HTMLElement) => {
-      if (!slide) return;
-      const img = slide.querySelector("img");
-      if (!img) return;
-
-      // Animate SVG feDisplacementMap turbulence
-      const filterId = `burn-filter-${Date.now()}`;
-      const svg = document.createElementNS("http://www.w3.org/2000/svg", "svg");
-      svg.setAttribute("style", "position:absolute;width:0;height:0");
-      svg.innerHTML = `
-        <defs>
-          <filter id="${filterId}">
-            <feTurbulence type="fractalNoise" baseFrequency="0.015" numOctaves="3" seed="2">
-              <animate attributeName="baseFrequency" from="0.015 0.015" to="0.08 0.08" dur="0.3s" fill="freeze"/>
-            </feTurbulence>
-            <feDisplacementMap in="SourceGraphic" scale="0" xChannelSelector="R" yChannelSelector="G">
-              <animate attributeName="scale" values="0;40;0" dur="0.6s" fill="freeze"/>
-            </feDisplacementMap>
-          </filter>
-        </defs>
-      `;
-      document.body.appendChild(svg);
-      img.style.filter = `url(#${filterId})`;
-      setTimeout(() => {
-        img.style.filter = "";
-        document.body.removeChild(svg);
-      }, 700);
-    };
-
-    init();
-
-    return () => {
-      if (swiperRef.current) swiperRef.current.destroy(true, true);
-    };
+  // Autoplay — pauses on hover and on hidden tab
+  useEffect(() => {
+    const handleVisibility = () => setIsPaused(document.hidden);
+    document.addEventListener("visibilitychange", handleVisibility);
+    return () => document.removeEventListener("visibilitychange", handleVisibility);
   }, []);
 
+  useEffect(() => {
+    if (isPaused || burning) return;
+    const timer = setInterval(() => {
+      next();
+    }, 5000);
+    return () => clearInterval(timer);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active, burning, isPaused]);
+
+  // Keyboard navigation
+  useEffect(() => {
+    const handler = (e: KeyboardEvent) => {
+      if (e.key === "ArrowLeft") prev();
+      if (e.key === "ArrowRight") next();
+    };
+    window.addEventListener("keydown", handler);
+    return () => window.removeEventListener("keydown", handler);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [active]);
+
+  const project = projects[active];
+
   return (
-    <section className="portfolio-section section-lg">
-      <div className="container mb-12">
-        <span className="section-label" style={{ color: "rgba(255,255,255,0.4)" }}>Selected Work</span>
-        <div className="flex items-end justify-between flex-wrap gap-4">
-          <h2
-            className="text-white"
-            data-reveal="up"
-            style={{ fontFamily: "var(--font-display)" }}
-          >
-            Work that speaks<br />
-            <span style={{ color: "var(--color-accent2)" }}>for itself</span>
-          </h2>
-          <a
-            href="/work"
-            className="text-white/60 hover:text-white text-sm font-medium transition-colors flex items-center gap-2"
-            style={{ cursor: "none" }}
-          >
-            View all projects <ExternalLink size={14} />
-          </a>
+    <section
+      className="portfolio-section relative w-full overflow-hidden"
+      style={{ height: "90vh", minHeight: "600px" }}
+      onMouseEnter={() => setIsPaused(true)}
+      onMouseLeave={() => setIsPaused(false)}
+    >
+      {/* SVG burn filter */}
+      <svg className="absolute w-0 h-0" aria-hidden="true">
+        <defs>
+          <filter id="burn-filter" x="-20%" y="-20%" width="140%" height="140%">
+            <feTurbulence
+              ref={turbRef}
+              type="turbulence"
+              baseFrequency="0 0"
+              numOctaves={1}
+              result="turbulence"
+            />
+            <feDisplacementMap
+              ref={displacRef}
+              in="SourceGraphic"
+              in2="turbulence"
+              scale={0}
+              xChannelSelector="R"
+              yChannelSelector="G"
+              result="displaced"
+            />
+          </filter>
+        </defs>
+      </svg>
+
+      {/* Main slide */}
+      <div
+        ref={slideRef}
+        className="absolute inset-0"
+        style={{ filter: "url(#burn-filter)" }}
+      >
+        <Image
+          src={project.image}
+          alt={project.title}
+          fill
+          className="object-cover object-top"
+          priority={active === 0}
+          sizes="100vw"
+        />
+        {/* Per-project gradient overlay */}
+        <div
+          className="absolute inset-0"
+          style={{
+            background: `linear-gradient(to top, ${project.color}F0 0%, ${project.color}99 35%, transparent 65%)`,
+          }}
+        />
+      </div>
+
+      {/* Content overlay */}
+      <div className="absolute bottom-0 left-0 right-0 p-8 md:p-16 z-10">
+        <div className="container">
+          <div className="flex flex-col md:flex-row md:items-end md:justify-between gap-6">
+            {/* Left: project info */}
+            <div>
+              <span className="inline-block text-xs font-medium tracking-widest uppercase text-white/60 mb-3 border border-white/20 px-3 py-1 rounded-full">
+                {project.category} · {project.year}
+              </span>
+              <h2 className="text-4xl md:text-6xl font-semibold text-white leading-none mb-2">
+                {project.title}
+              </h2>
+              <p className="text-white/60 text-lg">{project.subtitle}</p>
+              <div className="flex flex-wrap gap-2 mt-4">
+                {project.tags.map((tag) => (
+                  <span
+                    key={tag}
+                    className="text-xs text-white/50 bg-white/10 px-3 py-1 rounded-full"
+                  >
+                    {tag}
+                  </span>
+                ))}
+              </div>
+            </div>
+
+            {/* Right: navigation + view link */}
+            <div className="flex items-center gap-6">
+              <span className="text-white/40 text-sm tabular-nums">
+                {String(active + 1).padStart(2, "0")} /{" "}
+                {String(projects.length).padStart(2, "0")}
+              </span>
+              <div className="flex gap-3">
+                <button
+                  onClick={prev}
+                  aria-label="Previous project"
+                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                  style={{ cursor: "none" }}
+                >
+                  ←
+                </button>
+                <button
+                  onClick={next}
+                  aria-label="Next project"
+                  className="w-12 h-12 rounded-full border border-white/20 flex items-center justify-center text-white hover:bg-white hover:text-black transition-all duration-300"
+                  style={{ cursor: "none" }}
+                >
+                  →
+                </button>
+              </div>
+              <a
+                href={project.url}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="px-6 py-3 bg-white text-black text-sm font-medium rounded-full hover:bg-[var(--color-accent2)] hover:text-white transition-all duration-300"
+                style={{ cursor: "none" }}
+              >
+                View Live →
+              </a>
+            </div>
+          </div>
+
+          {/* Dot indicators */}
+          <div className="flex gap-2 mt-8">
+            {projects.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => goTo(i)}
+                aria-label={`Go to project ${i + 1}`}
+                style={{ cursor: "none" }}
+                className={`h-0.5 rounded-full transition-all duration-500 ${
+                  i === active ? "w-10 bg-white" : "w-4 bg-white/30"
+                }`}
+              />
+            ))}
+          </div>
         </div>
       </div>
 
-      {/* Swiper */}
-      <div className="swiper swiper-portfolio px-4" style={{ paddingBottom: "3rem" }}>
-        <div className="swiper-wrapper">
-          {projects.map((project) => (
-            <div
-              key={project.title}
-              className="swiper-slide"
-              style={{ width: "min(680px, 90vw)" }}
-            >
-              <div className="portfolio-card group" style={{ background: project.bg }}>
-                {/* Project Image / Placeholder */}
-                <div
-                  className="w-full h-full absolute inset-0 flex items-center justify-center"
-                  style={{ background: `linear-gradient(135deg, ${project.bg}, #4F46E510)` }}
-                >
-                  {/* Placeholder content for when images aren't available */}
-                  <div className="text-center px-8">
-                    <div
-                      className="text-6xl font-bold mb-4 opacity-10"
-                      style={{ fontFamily: "var(--font-display)", color: "white" }}
-                    >
-                      {project.title[0]}
-                    </div>
-                    <div
-                      className="text-white/20 font-mono text-sm tracking-widest"
-                    >
-                      {project.url.replace("https://", "")}
-                    </div>
-                  </div>
-                </div>
-
-                {/* Overlay */}
-                <div className="portfolio-card-overlay opacity-100">
-                  <span
-                    className="inline-block px-3 py-1 rounded-full text-xs font-medium mb-2"
-                    style={{ background: "rgba(79,70,229,0.3)", color: "var(--color-accent2)", border: "1px solid rgba(79,70,229,0.4)" }}
-                  >
-                    {project.category}
-                  </span>
-                  <h3 className="text-white text-2xl font-semibold mb-3" style={{ fontFamily: "var(--font-display)" }}>
-                    {project.title}
-                  </h3>
-                  <a
-                    href={project.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-2 text-white/70 hover:text-white text-sm font-medium transition-colors"
-                    style={{ cursor: "none" }}
-                  >
-                    View Case <ExternalLink size={14} />
-                  </a>
-                </div>
-              </div>
-            </div>
-          ))}
-        </div>
-
-        <div className="swiper-button-prev" />
-        <div className="swiper-button-next" />
-        <div className="swiper-pagination" style={{ bottom: "0.5rem" }} />
+      {/* Section label */}
+      <div className="absolute top-8 left-8 md:left-16 z-10">
+        <span
+          className="text-white/30 text-xs font-mono tracking-widest uppercase"
+          style={{ fontFamily: "var(--font-mono)" }}
+        >
+          Selected Work
+        </span>
       </div>
     </section>
   );
