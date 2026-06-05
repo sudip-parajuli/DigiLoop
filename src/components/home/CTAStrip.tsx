@@ -50,7 +50,7 @@ export default function CTAStrip() {
             <ArrowRight size={18} />
           </Link>
           <a
-            href="https://wa.me/9779800000000"
+            href="https://wa.me/9779866243388"
             target="_blank"
             rel="noopener noreferrer"
             className="inline-flex items-center gap-2 px-8 py-4 rounded-lg border border-white/20 text-white/80 font-medium text-base hover:border-white hover:text-white transition-all duration-300"
