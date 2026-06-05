@@ -176,7 +176,7 @@ export default function HeroSection() {
         {/* Sub */}
         <p
           ref={subRef}
-          className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-5"
+          className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-10"
           style={{ opacity: 0 }}
         >
           From websites to AI tools — DigiLoop builds digital experiences that captivate, convert, and grow your business.

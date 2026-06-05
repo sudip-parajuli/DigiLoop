@@ -229,6 +229,7 @@ p { color: var(--color-muted); line-height: 1.75; }
   overflow: hidden;
   transition: color 0.3s ease, transform 0.2s ease;
   cursor: none;
+  isolation: isolate;
 }
 
 .btn::before {
@@ -239,7 +240,7 @@ p { color: var(--color-muted); line-height: 1.75; }
   transform: scaleX(0);
   transform-origin: left;
   transition: transform 0.4s var(--ease-out-expo);
-  z-index: 0;
+  z-index: -1;
 }
 
 .btn:hover::before { transform: scaleX(1); }
@@ -408,7 +409,7 @@ p { color: var(--color-muted); line-height: 1.75; }
   font-family: var(--font-display);
   font-size: clamp(3rem, 6vw, 5rem);
   font-weight: 600;
-  color: var(--color-ink);
+  color: inherit;
   letter-spacing: -0.03em;
   line-height: 1;
 }

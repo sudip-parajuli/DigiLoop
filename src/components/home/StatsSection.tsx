@@ -56,25 +56,43 @@ export default function StatsSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 bg-[var(--color-accent)]">
-      <div className="container">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-12 text-center">
-          {stats.map((s) => (
-            <div key={s.label}>
-              <div className="flex items-end justify-center gap-1">
-                <span
-                  data-count={s.value}
-                  className="stat-number text-white"
-                >
-                  0
-                </span>
-                <span className="text-3xl font-semibold text-[var(--color-accent2)] pb-1">
-                  {s.suffix}
-                </span>
+    <section ref={sectionRef} className="py-16 bg-[var(--color-bg)] relative overflow-hidden">
+      {/* Background glow effects behind the glass card */}
+      <div
+        className="absolute top-1/2 left-1/4 -translate-y-1/2 w-96 h-96 rounded-full opacity-20 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, var(--color-accent), transparent)" }}
+      />
+      <div
+        className="absolute top-1/2 right-1/4 -translate-y-1/2 w-82 h-82 rounded-full opacity-15 blur-3xl pointer-events-none"
+        style={{ background: "radial-gradient(circle, var(--color-accent2), transparent)" }}
+      />
+
+      <div className="container relative z-10">
+        <div className="bg-white/[0.03] backdrop-blur-xl border border-white/10 rounded-3xl p-12 md:p-16 shadow-2xl relative overflow-hidden">
+          {/* Subtle inside card radial highlights */}
+          <div className="absolute -right-20 -top-20 w-64 h-64 rounded-full bg-[var(--color-accent2)]/10 blur-3xl pointer-events-none" />
+          <div className="absolute -left-20 -bottom-20 w-64 h-64 rounded-full bg-[var(--color-accent)]/10 blur-3xl pointer-events-none" />
+
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-12 md:gap-8 text-center relative z-10">
+            {stats.map((s) => (
+              <div key={s.label} className="flex flex-col items-center">
+                <div className="flex items-end justify-center gap-1">
+                  <span
+                    data-count={s.value}
+                    className="stat-number text-white"
+                  >
+                    0
+                  </span>
+                  <span className="text-3xl font-semibold text-[var(--color-accent2)] pb-1.5 md:pb-2.5">
+                    {s.suffix}
+                  </span>
+                </div>
+                <p className="mt-3 text-xs md:text-sm font-medium tracking-wide text-white/60 uppercase font-mono">
+                  {s.label}
+                </p>
               </div>
-              <p className="mt-2 text-sm text-white/50">{s.label}</p>
-            </div>
-          ))}
+            ))}
+          </div>
         </div>
       </div>
     </section>
