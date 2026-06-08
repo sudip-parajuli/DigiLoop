@@ -14,10 +14,10 @@ export const projects = [
     {
     id: 'sudip-parajuli',
     title: 'Sudip Parajuli',
-    subtitle: 'Personal Portfolio',
+    subtitle: '3D Personal Portfolio',
     category: 'Web Design',
     tags: ['Next.js', 'GSAP', 'Framer Motion'],
-    image: '/images/projects/sudip-parajuli3D.jpg',
+    image: '/images/projects/sudip-parajuli3D.png',
     color: '#1A1A2E',
     url: ' https://sudip-parajuli.com.np',
     year: '2026',
