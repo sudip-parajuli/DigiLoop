@@ -10,8 +10,7 @@ export const projects = [
     url: 'https://sudip-parajuli.github.io/PersonalPortfolio/',
     year: '2024',
   },
-  https://sudip-parajuli.com.np
-    {
+  {
     id: 'sudip-parajuli',
     title: 'Sudip Parajuli',
     subtitle: '3D Personal Portfolio',
