@@ -7,8 +7,20 @@ export const projects = [
     tags: ['Next.js', 'GSAP', 'Framer Motion'],
     image: '/images/projects/sudip-parajuli.jpg',
     color: '#1A1A2E',
-    url: 'https://sudip-parajuli.com.np',
+    url: 'https://sudip-parajuli.github.io/PersonalPortfolio/',
     year: '2024',
+  },
+  https://sudip-parajuli.com.np
+    {
+    id: 'sudip-parajuli',
+    title: 'Sudip Parajuli',
+    subtitle: 'Personal Portfolio',
+    category: 'Web Design',
+    tags: ['Next.js', 'GSAP', 'Framer Motion'],
+    image: '/images/projects/sudip-parajuli3D.jpg',
+    color: '#1A1A2E',
+    url: ' https://sudip-parajuli.com.np',
+    year: '2026',
   },
   {
     id: 'easymoto',
