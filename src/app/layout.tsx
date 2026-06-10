@@ -57,6 +57,10 @@ export default function RootLayout({
   return (
     <html lang="en" className={dmSans.variable}>
       <head>
+        {/* ── Favicon — overrides Next.js default favicon.ico ── */}
+        <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+        <link rel="icon" href="/favicon.ico" sizes="any" />
+        <link rel="apple-touch-icon" href="/favicon.svg" />
         {/* Clash Display from Fontshare */}
         <link rel="preconnect" href="https://api.fontshare.com" />
         <link
