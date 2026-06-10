@@ -9,9 +9,9 @@ import TestimonialsSection from "@/components/home/TestimonialsSection";
 import CTAStrip from "@/components/home/CTAStrip";
 
 export const metadata: Metadata = {
-  title: "DigiLoop — We make your brand live in every pixel",
+  title: "SIA Enterprises — Strategy, Innovation & Analytics",
   description:
-    "DigiLoop is a full-service digital agency based in Nepal. We build websites, digital invitations, run social media, integrate AI, and more.",
+    "SIA Enterprises is a premier digital transformation agency based in Nepal. We help businesses grow through custom web development, AI integration, automation, digital marketing, and data analytics.",
 };
 
 export default function HomePage() {

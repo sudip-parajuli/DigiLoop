@@ -7,10 +7,10 @@ import { ScrollTrigger } from "gsap/ScrollTrigger";
 gsap.registerPlugin(ScrollTrigger);
 
 const stats = [
-  { value: 20, suffix: "+", label: "Projects Delivered" },
-  { value: 15, suffix: "+", label: "Happy Clients" },
-  { value: 5, suffix: "+", label: "Industries Served" },
-  { value: 100, suffix: "%", label: "On-Time Delivery" },
+  { value: 40, suffix: "+", label: "Projects Delivered" },
+  { value: 98, suffix: "%", label: "Client Satisfaction" },
+  { value: 120, suffix: "+", label: "Automation Workflows" },
+  { value: 15, suffix: "+", label: "Technologies Used" },
 ];
 
 export default function StatsSection() {

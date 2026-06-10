@@ -7,9 +7,9 @@ import FAQSection from "@/components/services/FAQSection";
 import CTAStrip from "@/components/home/CTAStrip";
 
 export const metadata: Metadata = {
-  title: "Services — DigiLoop",
+  title: "Services — SIA Enterprises",
   description:
-    "Explore DigiLoop's full suite of digital services: website design, AI integration, social media management, digital marketing, automation, and more.",
+    "Explore SIA Enterprises' suite of professional consulting and development services: web development, AI integration, automation, digital marketing, and analytics.",
 };
 
 export default function ServicesPage() {

@@ -34,11 +34,11 @@ export default function ServicesHero() {
           className="max-w-2xl mb-6 text-[var(--color-ink)]"
           data-reveal="up"
         >
-          Everything your brand needs to{" "}
-          <span style={{ color: "var(--color-accent2)" }}>thrive</span>
+          Everything your business needs to{" "}
+          <span style={{ color: "var(--color-accent2)" }}>grow</span>
         </h1>
         <p className="text-lg text-[var(--color-muted)] max-w-lg" data-reveal="up" data-delay="0.1">
-          From strategy to execution — we cover every touchpoint of your digital presence with craft and precision.
+          From consulting to execution — we cover every touchpoint of your digital transformation with Strategy, Innovation & Analytics.
         </p>
       </div>
     </section>

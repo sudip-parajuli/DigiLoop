@@ -43,15 +43,15 @@ export default function SmoothLoader() {
         fill="none"
         xmlns="http://www.w3.org/2000/svg"
       >
-        {/* DigiLoop wordmark as stroked text paths */}
+        {/* SIA wordmark as stroked text paths */}
         <text
           x="50%"
           y="44"
           textAnchor="middle"
           fontFamily="'Clash Display', sans-serif"
-          fontSize="42"
+          fontSize="46"
           fontWeight="600"
-          letterSpacing="-1"
+          letterSpacing="1"
           fill="none"
           stroke="white"
           strokeWidth="1.2"
@@ -61,7 +61,7 @@ export default function SmoothLoader() {
             animation: "drawStroke 1.6s cubic-bezier(0.16, 1, 0.3, 1) forwards",
           }}
         >
-          DigiLoop
+          SIA
         </text>
       </svg>
       <p
@@ -78,7 +78,7 @@ export default function SmoothLoader() {
           opacity: 0,
         }}
       >
-        We make your brand live in every pixel.
+        Strategy · Innovation · Analytics
       </p>
       <style>{`
         @keyframes fadeIn { to { opacity: 1; } }

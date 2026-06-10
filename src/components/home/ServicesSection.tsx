@@ -2,57 +2,57 @@
 
 import { useEffect, useRef } from "react";
 import {
-  Globe, Mail, Share2, TrendingUp, Bot, Cpu, Palette, CreditCard,
+  Globe, Cpu, Bot, TrendingUp, Search, BarChart3, Palette, Lightbulb,
 } from "lucide-react";
 
 const services = [
   {
     icon: Globe,
-    title: "Website Design",
-    desc: "Premium websites that captivate and convert visitors into customers.",
+    title: "Custom Web Development",
+    desc: "Premium, responsive web applications engineered for speed, security, and scalability.",
     color: "#4F46E5",
   },
   {
-    icon: Mail,
-    title: "Digital Invitations",
-    desc: "Stunning e-invites for weddings, events, and celebrations.",
-    color: "#7C3AED",
+    icon: Cpu,
+    title: "AI Integration & Automation",
+    desc: "Embed cognitive AI capabilities and machine learning models into your products.",
+    color: "#06B6D4",
   },
   {
-    icon: Share2,
-    title: "Social Media Management",
-    desc: "Consistent, engaging content strategy across all platforms.",
-    color: "#EC4899",
+    icon: Bot,
+    title: "Business Process Automation",
+    desc: "Streamline workflows and cut operational costs with custom intelligent integrations.",
+    color: "#10B981",
   },
   {
     icon: TrendingUp,
     title: "Digital Marketing",
-    desc: "Data-driven campaigns that drive real, measurable growth.",
+    desc: "Data-driven growth strategies that drive measurable traffic and user acquisition.",
     color: "#F59E0B",
   },
   {
-    icon: Bot,
-    title: "Automation",
-    desc: "Streamline your business workflows with smart automation.",
-    color: "#10B981",
+    icon: Search,
+    title: "SEO Optimization",
+    desc: "Improve visibility, scale organic search rankings, and optimize for target audiences.",
+    color: "#7C3AED",
   },
   {
-    icon: Cpu,
-    title: "AI Integration",
-    desc: "Embed cutting-edge AI into your products and processes.",
-    color: "#06B6D4",
+    icon: BarChart3,
+    title: "Data Analytics & Reporting",
+    desc: "Turn raw tracking into actionable dashboards, telemetry, and business intelligence.",
+    color: "#8B5CF6",
   },
   {
     icon: Palette,
-    title: "Graphic Design",
-    desc: "Visual identities, illustrations, and brand assets that stand out.",
+    title: "UI/UX Design",
+    desc: "Human-centric, modern, and beautiful user interfaces tailored to your audience.",
     color: "#F97316",
   },
   {
-    icon: CreditCard,
-    title: "Print & Branding",
-    desc: "Business cards, flyers, and print materials with premium finishes.",
-    color: "#8B5CF6",
+    icon: Lightbulb,
+    title: "Technical Consulting",
+    desc: "Strategic guidance, software architecture design, and enterprise tech planning.",
+    color: "#EC4899",
   },
 ];
 

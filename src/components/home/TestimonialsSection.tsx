@@ -5,7 +5,7 @@ import { Star } from "lucide-react";
 
 const testimonials = [
   {
-    quote: "DigiLoop completely transformed our online presence. The website they built for us has been our best salesperson — leads come in every day now.",
+    quote: "SIA Enterprises completely transformed our online presence. The website they built for us has been our best salesperson — leads come in every day now.",
     name: "Rajesh Shrestha",
     company: "TechWired Solutions",
     role: "Founder & CEO",

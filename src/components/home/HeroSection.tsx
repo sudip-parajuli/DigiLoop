@@ -159,7 +159,7 @@ export default function HeroSection() {
           data-delay="2.1"
         >
           <span className="w-2 h-2 rounded-full bg-[var(--color-accent2)] animate-pulse" />
-          Full-service digital agency · Based in Nepal
+          Strategy, Innovation & Analytics · Based in Nepal
         </div>
 
         {/* Headline */}
@@ -168,9 +168,8 @@ export default function HeroSection() {
           className="text-[var(--color-ink)] mb-3 max-w-4xl mx-auto"
           style={{ opacity: 0 }}
         >
-          We make your brand{" "}
-          <span style={{ color: "var(--color-accent2)" }}>live</span>{" "}
-          in every pixel.
+          Transforming Businesses Through{" "}
+          <span style={{ color: "var(--color-accent2)" }}>Strategy. Innovation. Analytics.</span>
         </h1>
 
         {/* Sub */}
@@ -179,7 +178,7 @@ export default function HeroSection() {
           className="text-lg text-[var(--color-muted)] max-w-xl mx-auto mb-10"
           style={{ opacity: 0 }}
         >
-          From websites to AI tools — DigiLoop builds digital experiences that captivate, convert, and grow your business.
+          SIA Enterprises helps businesses grow through modern web development, AI solutions, automation, digital marketing, and data-driven strategies.
         </p>
 
         {/* CTAs */}
@@ -188,12 +187,12 @@ export default function HeroSection() {
           className="flex flex-col sm:flex-row items-center justify-center gap-4 mb-6"
           style={{ opacity: 0 }}
         >
-          <Link href="/work" className="btn btn-primary px-8 py-4 text-base">
-            See Our Work
+          <Link href="/contact" className="btn btn-primary px-8 py-4 text-base">
+            Book a Consultation
             <ArrowRight size={18} />
           </Link>
-          <Link href="/contact" className="btn btn-ghost px-8 py-4 text-base">
-            Get in Touch
+          <Link href="/work" className="btn btn-ghost px-8 py-4 text-base">
+            View Our Work
           </Link>
         </div>
       </div>

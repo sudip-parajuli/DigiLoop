@@ -51,14 +51,14 @@ export default function Navbar() {
         <div className="container h-full flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group" style={{ cursor: "none" }}>
-            <div className="w-8 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center transition-transform duration-300 group-hover:rotate-12">
-              <span className="text-white font-bold text-sm font-mono">DL</span>
+            <div className="w-10 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center transition-transform duration-300 group-hover:rotate-12">
+              <span className="text-white font-bold text-xs font-mono tracking-widest">SIA</span>
             </div>
             <span
               className="text-xl font-semibold text-[var(--color-ink)]"
               style={{ fontFamily: "var(--font-display)" }}
             >
-              DigiLoop
+              SIA
             </span>
           </Link>
 
@@ -126,7 +126,7 @@ export default function Navbar() {
         </button>
 
         <p className="absolute bottom-8 text-white/30 text-sm font-mono tracking-widest">
-          digiloop.com.np
+          siaenterprises.com.np
         </p>
       </div>
     </>

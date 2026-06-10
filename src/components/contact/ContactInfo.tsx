@@ -2,8 +2,8 @@ import { MapPin, Mail, Phone, Clock, MessageCircle } from "lucide-react";
 
 const info = [
   { icon: MapPin, label: "Location", value: "Kathmandu, Nepal" },
-  { icon: Mail, label: "Email", value: "hello@digiloop.com.np", href: "mailto:hello@digiloop.com.np" },
-  { icon: Phone, label: "Phone", value: "+977 980-0000000", href: "tel:+9779800000000" },
+  { icon: Mail, label: "Email", value: "hello@siaenterprises.com.np", href: "mailto:hello@siaenterprises.com.np" },
+  { icon: Phone, label: "Phone", value: "+977 986-6243388", href: "tel:+9779866243388" },
   { icon: Clock, label: "Response time", value: "Within 24 hours" },
 ];
 
@@ -17,7 +17,7 @@ export default function ContactInfo() {
 
       {/* WhatsApp CTA */}
       <a
-        href="https://wa.me/9779800000000"
+        href="https://wa.me/9779866243388"
         target="_blank"
         rel="noopener noreferrer"
         className="flex items-center gap-3 p-4 rounded-xl mb-6 transition-transform duration-200 hover:-translate-y-1"
@@ -65,7 +65,7 @@ export default function ContactInfo() {
         style={{ height: "200px", background: "var(--color-accent3)" }}
       >
         <iframe
-          title="DigiLoop Location"
+          title="SIA Enterprises Location"
           src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d56516.31625556187!2d85.29111251779784!3d27.709030847479847!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x39eb198a307baabf%3A0xb5137c1bf18db1ea!2sKathmandu%2044600!5e0!3m2!1sen!2snp!4v1700000000000!5m2!1sen!2snp"
           width="100%"
           height="200"

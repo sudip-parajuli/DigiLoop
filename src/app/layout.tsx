@@ -9,36 +9,44 @@ const dmSans = DM_Sans({
 });
 
 export const metadata: Metadata = {
-  title: "DigiLoop — We make your brand live in every pixel",
+  title: "SIA Enterprises — Strategy, Innovation & Analytics",
   description:
-    "DigiLoop is a full-service digital agency based in Nepal offering website design, digital invitations, social media management, AI integration, automation, graphic design, and more.",
+    "SIA Enterprises is a premier digital transformation agency in Nepal. We empower businesses through strategic thinking, custom web development, innovative AI & automation, and data analytics.",
   keywords: [
-    "digital agency Nepal",
-    "website design Nepal",
-    "DigiLoop",
-    "social media management",
-    "AI integration Nepal",
-    "graphic design",
-    "digital marketing Nepal",
+    "SIA Enterprises Nepal",
+    "Digital Agency Nepal",
+    "Web Development Nepal",
+    "AI Automation Nepal",
+    "Digital Transformation Nepal",
+    "Analytics Consulting Nepal",
+    "SIA Enterprises",
   ],
-  authors: [{ name: "DigiLoop" }],
-  creator: "DigiLoop",
+  authors: [{ name: "SIA Enterprises" }],
+  creator: "SIA Enterprises",
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://digiloop.com.np",
-    siteName: "DigiLoop",
-    title: "DigiLoop — We make your brand live in every pixel",
+    url: "https://siaenterprises.com.np",
+    siteName: "SIA Enterprises",
+    title: "SIA Enterprises — Strategy, Innovation & Analytics",
     description:
-      "Full-service digital agency based in Nepal. Websites, AI tools, branding, social media & more.",
+      "Empower your business through strategic thinking, innovative technology, and actionable analytics. Web development, AI integration, automation, and consulting.",
   },
   twitter: {
     card: "summary_large_image",
-    title: "DigiLoop — We make your brand live in every pixel",
-    description: "Full-service digital agency based in Nepal.",
-    creator: "@digiloop_np",
+    title: "SIA Enterprises — Strategy, Innovation & Analytics",
+    description: "Empowering businesses through Strategy, Innovation & Analytics.",
+    creator: "@siaenterprises",
   },
-  metadataBase: new URL("https://digiloop.com.np"),
+  metadataBase: new URL("https://siaenterprises.com.np"),
+  icons: {
+    icon: [
+      { url: "/favicon.svg", type: "image/svg+xml" },
+      { url: "/favicon.ico", type: "image/x-icon" },
+    ],
+    shortcut: "/favicon.svg",
+    apple: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({

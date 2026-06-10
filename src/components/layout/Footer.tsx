@@ -4,11 +4,11 @@ import { Instagram, Twitter, Linkedin, Youtube } from "@/components/ui/BrandIcon
 
 const footerLinks = {
   Services: [
-    { label: "Web Design", href: "/services#web" },
-    { label: "Digital Invitations", href: "/services#invitations" },
-    { label: "Social Media", href: "/services#social" },
+    { label: "Web Development", href: "/services#web" },
     { label: "AI Integration", href: "/services#ai" },
-    { label: "Graphic Design", href: "/services#graphic" },
+    { label: "Process Automation", href: "/services#automation" },
+    { label: "Digital Marketing", href: "/services#marketing" },
+    { label: "Data Analytics", href: "/services#analytics" },
   ],
   Company: [
     { label: "About", href: "/about" },
@@ -18,10 +18,10 @@ const footerLinks = {
 };
 
 const socials = [
-  { icon: Instagram, href: "https://instagram.com/digiloop.np", label: "Instagram" },
-  { icon: Twitter, href: "https://twitter.com/digiloop_np", label: "Twitter" },
-  { icon: Linkedin, href: "https://linkedin.com/company/digiloop", label: "LinkedIn" },
-  { icon: Youtube, href: "https://youtube.com/@digiloop", label: "YouTube" },
+  { icon: Instagram, href: "https://instagram.com/siaenterprises.np", label: "Instagram" },
+  { icon: Twitter, href: "https://twitter.com/siaenterprises", label: "Twitter" },
+  { icon: Linkedin, href: "https://linkedin.com/company/siaenterprises", label: "LinkedIn" },
+  { icon: Youtube, href: "https://youtube.com/@siaenterprises", label: "YouTube" },
 ];
 
 export default function Footer() {
@@ -32,18 +32,18 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2 mb-4 group" style={{ cursor: "none" }}>
-              <div className="w-9 h-9 rounded-lg bg-[var(--color-accent2)] flex items-center justify-center">
-                <span className="text-white font-bold text-sm font-mono">DL</span>
+              <div className="w-10 h-8 rounded-lg bg-[var(--color-accent2)] flex items-center justify-center">
+                <span className="text-white font-bold text-xs font-mono tracking-widest">SIA</span>
               </div>
               <span
                 className="text-2xl font-semibold text-white"
                 style={{ fontFamily: "var(--font-display)" }}
               >
-                DigiLoop
+                SIA
               </span>
             </Link>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
-              We make your brand live in every pixel. A full-service digital agency based in Nepal.
+              Empowering businesses through Strategy, Innovation & Analytics. Based in Kathmandu, Nepal.
             </p>
             {/* Social Icons */}
             <div className="flex items-center gap-3">
@@ -87,7 +87,7 @@ export default function Footer() {
         {/* Bottom Bar */}
         <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4">
           <p className="text-white/30 text-sm">
-            © {new Date().getFullYear()} DigiLoop. All rights reserved.
+            © {new Date().getFullYear()} SIA Enterprises. All rights reserved.
           </p>
           <p className="text-white/30 text-sm flex items-center gap-1">
             Made with <span className="text-red-400">❤️</span> in Nepal
@@ -97,7 +97,7 @@ export default function Footer() {
 
       {/* WhatsApp FAB */}
       <a
-        href="https://wa.me/9779800000000"
+        href="https://wa.me/9779866243388"
         target="_blank"
         rel="noopener noreferrer"
         className="whatsapp-fab"

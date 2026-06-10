@@ -1,10 +1,10 @@
 const milestones = [
-  { year: "2022", title: "DigiLoop Founded", desc: "Started as a freelance web design studio in Kathmandu with a single laptop and a big vision." },
-  { year: "2023", title: "First 10 Clients", desc: "Delivered 10 websites, landed our first corporate client, and grew the team to 3 people." },
-  { year: "2023", title: "Expanded Services", desc: "Added social media management, digital marketing, and graphic design to our offering." },
+  { year: "2022", title: "SIA Founded", desc: "Started as a boutique consulting & development group in Kathmandu with a single laptop and a big vision." },
+  { year: "2023", title: "First 10 Clients", desc: "Delivered 10 platforms, landed our first corporate client, and grew the team to 3 people." },
+  { year: "2023", title: "Expanded Services", desc: "Added strategy consulting, business process automation, and data analytics to our offering." },
   { year: "2024", title: "AI Integration Launch", desc: "Built our first AI-powered product — an automated customer service system for a retail client." },
-  { year: "2024", title: "20+ Projects Delivered", desc: "Crossed 20 successful project deliveries across web, branding, social, and print." },
-  { year: "2025", title: "Going Regional", desc: "Onboarded clients from India and the UK. DigiLoop goes beyond borders." },
+  { year: "2024", title: "40+ Projects Delivered", desc: "Crossed 40 successful project deliveries across web, branding, social, and automation." },
+  { year: "2025", title: "Going Regional", desc: "Onboarded clients from India and the UK. SIA Enterprises goes beyond borders." },
 ];
 
 export default function JourneyTimeline() {

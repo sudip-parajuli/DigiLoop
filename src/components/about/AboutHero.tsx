@@ -33,10 +33,10 @@ export default function AboutHero() {
 
   return (
     <section className="section-lg bg-[var(--color-bg)] relative overflow-hidden">
-      <div className="absolute top-0 right-0 w-1/3 h-full opacity-3 pointer-events-none"
+      <div className="absolute top-0 right-0 w-1/3 h-full opacity-5 pointer-events-none"
         style={{ background: "radial-gradient(circle at 80% 50%, #4F46E5, transparent 60%)" }} />
       <div className="container">
-        <span className="section-label">Our Story</span>
+        <span className="section-label mb-8 block">Our Story</span>
         <div
           ref={textRef}
           className="max-w-4xl"
@@ -48,7 +48,7 @@ export default function AboutHero() {
             color: "var(--color-ink)",
           }}
         >
-          We are DigiLoop — a digital agency born in Nepal with a mission to help local and global brands build meaningful digital identities. We believe that great design is not a luxury. It's how you survive and thrive in the digital age.
+          We are SIA Enterprises — a digital agency born in Nepal with a mission to help local and global brands build meaningful digital identities. We believe that great design is not a luxury. It&apos;s how you survive and thrive in the digital age.
         </div>
       </div>
     </section>

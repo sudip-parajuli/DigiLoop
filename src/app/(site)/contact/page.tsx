@@ -4,9 +4,9 @@ import ContactForm from "@/components/contact/ContactForm";
 import ContactInfo from "@/components/contact/ContactInfo";
 
 export const metadata: Metadata = {
-  title: "Contact — DigiLoop",
+  title: "Contact — SIA Enterprises",
   description:
-    "Get in touch with DigiLoop. Tell us about your project and we'll get back to you within 24 hours.",
+    "Get in touch with SIA Enterprises. Tell us about your digital consulting or engineering needs and we'll get back to you within 24 hours.",
 };
 
 export default function ContactPage() {
