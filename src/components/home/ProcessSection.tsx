@@ -42,6 +42,95 @@ const STEPS = [
 export default function ProcessSection() {
   const sectionRef = useRef<HTMLElement>(null);
   const lineRef = useRef<HTMLDivElement>(null);
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+
+  // Three.js scene — desktop only, relocated from Hero
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+    if (window.innerWidth < 1024) return;
+
+    let renderer: any, scene: any, camera: any, group: any;
+    let animId: number;
+    let mouseX = 0, mouseY = 0;
+    let targetRotX = 0, targetRotY = 0;
+
+    const init = async () => {
+      const THREE = await import("three");
+
+      scene = new THREE.Scene();
+      camera = new THREE.PerspectiveCamera(60, canvas.clientWidth / canvas.clientHeight, 0.1, 100);
+      camera.position.z = 5;
+
+      renderer = new THREE.WebGLRenderer({ canvas, alpha: true, antialias: true });
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+      renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
+      renderer.setClearColor(0x000000, 0);
+
+      group = new THREE.Group();
+      scene.add(group);
+
+      const geometries = [
+        new THREE.IcosahedronGeometry(1.2, 1),
+        new THREE.IcosahedronGeometry(0.7, 0),
+        new THREE.OctahedronGeometry(0.9, 0),
+        new THREE.IcosahedronGeometry(0.5, 1),
+        new THREE.OctahedronGeometry(0.6, 0),
+      ];
+
+      const positions = [
+        [0, 0, 0], [2.5, 1, -1], [-2.5, -0.5, -1.5], [1.5, -1.5, -0.5], [-1.5, 1.5, -0.5],
+      ];
+
+      geometries.forEach((geo, i) => {
+        const mat = new THREE.MeshBasicMaterial({
+          color: 0x1A1A2E, wireframe: true,
+          opacity: i === 0 ? 0.15 : 0.08, transparent: true,
+        });
+        const mesh = new THREE.Mesh(geo, mat);
+        const [x, y, z] = positions[i];
+        mesh.position.set(x, y, z);
+        group.add(mesh);
+      });
+
+      const animate = () => {
+        animId = requestAnimationFrame(animate);
+        targetRotX += (mouseY * 0.0003 - targetRotX) * 0.05;
+        targetRotY += (mouseX * 0.0003 - targetRotY) * 0.05;
+        group.rotation.x += (targetRotX - group.rotation.x) * 0.05;
+        group.rotation.y += (targetRotY - group.rotation.y) * 0.05;
+        group.children.forEach((mesh: any, i: number) => {
+          mesh.rotation.x += 0.002 * (i % 2 === 0 ? 1 : -1);
+          mesh.rotation.y += 0.003 * (i % 2 === 0 ? 1 : -1);
+        });
+        renderer.render(scene, camera);
+      };
+      animate();
+    };
+
+    const onMouseMove = (e: MouseEvent) => {
+      mouseX = e.clientX - window.innerWidth / 2;
+      mouseY = e.clientY - window.innerHeight / 2;
+    };
+
+    const onResize = () => {
+      if (!renderer || !camera) return;
+      camera.aspect = canvas.clientWidth / canvas.clientHeight;
+      camera.updateProjectionMatrix();
+      renderer.setSize(canvas.clientWidth, canvas.clientHeight);
+    };
+
+    init();
+    document.addEventListener("mousemove", onMouseMove);
+    window.addEventListener("resize", onResize);
+
+    return () => {
+      cancelAnimationFrame(animId);
+      document.removeEventListener("mousemove", onMouseMove);
+      window.removeEventListener("resize", onResize);
+      if (renderer) renderer.dispose();
+    };
+  }, []);
 
   useEffect(() => {
     const ctx = gsap.context(() => {
@@ -103,8 +192,23 @@ export default function ProcessSection() {
   }, []);
 
   return (
-    <section ref={sectionRef} className="py-24 md:py-36">
-      <div className="container">
+    <section ref={sectionRef} className="relative overflow-hidden py-24 md:py-36 bg-[var(--color-bg)]">
+      {/* Three.js canvas — desktop only, behind cards */}
+      <canvas
+        ref={canvasRef}
+        className="absolute inset-0 w-full h-full pointer-events-none"
+        style={{ opacity: 0.85 }}
+      />
+
+      {/* Fallback/Overlay gradient bg */}
+      <div
+        className="absolute inset-0 pointer-events-none"
+        style={{
+          background: "radial-gradient(circle at 80% 50%, rgba(79,70,229,0.04), transparent 60%)",
+        }}
+      />
+
+      <div className="container relative z-10">
         {/* Section header */}
         <div className="mb-20 max-w-xl" data-reveal="up">
           <span className="inline-block text-xs tracking-widest uppercase font-mono text-[var(--color-muted)] mb-4">

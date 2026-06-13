@@ -51,13 +51,13 @@ export default function CustomCursor() {
     gsap.ticker.add(tickerFn);
 
     const onMouseEnterInteractive = () => {
-      gsap.to(dot, { scale: 3.5, duration: 0.3, ease: "power2.out" });
-      gsap.to(ring, { opacity: 0, scale: 0.5, duration: 0.2 });
+      gsap.to(dot, { scale: 0, duration: 0.2, ease: "power2.out" });
+      gsap.to(ring, { scale: 1.6, borderColor: "var(--color-accent2)", duration: 0.3, ease: "power2.out" });
     };
 
     const onMouseLeaveInteractive = () => {
-      gsap.to(dot, { scale: 1, duration: 0.3, ease: "power2.out" });
-      gsap.to(ring, { opacity: 1, scale: 1, duration: 0.3 });
+      gsap.to(dot, { scale: 1, backgroundColor: "var(--color-accent)", border: "none", duration: 0.3, ease: "power2.out" });
+      gsap.to(ring, { scale: 1, borderColor: "var(--color-accent)", opacity: 1, duration: 0.3 });
     };
 
     const onMouseEnterImage = () => {
@@ -67,13 +67,13 @@ export default function CustomCursor() {
 
     const onMouseLeaveImage = () => {
       gsap.to(dot, { scale: 1, backgroundColor: "var(--color-accent)", border: "none", duration: 0.3 });
-      gsap.to(ring, { scale: 1, opacity: 1, duration: 0.3 });
+      gsap.to(ring, { scale: 1, borderColor: "var(--color-accent)", opacity: 1, duration: 0.3 });
     };
 
     document.addEventListener("mousemove", onMouseMove);
 
     const interactiveEls = document.querySelectorAll<HTMLElement>(
-      "a, button, [role='button'], .service-card, .portfolio-grid-card, .team-card, input, textarea, select, label[for]"
+      "a, button, [role='button'], .service-card, .portfolio-grid-card, .team-card, input, textarea, select, label[for], .brands-marquee-track > div"
     );
     const imageEls = document.querySelectorAll<HTMLElement>(
       ".portfolio-section, .portfolio-grid-card img"

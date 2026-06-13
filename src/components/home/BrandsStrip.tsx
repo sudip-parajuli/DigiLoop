@@ -60,11 +60,11 @@ export default function BrandsStrip() {
           0%   { transform: translateX(0); }
           100% { transform: translateX(-25%); }
         }
-        .marquee-track {
+        .brands-marquee-track {
           animation: marquee-scroll 35s linear infinite;
           will-change: transform;
         }
-        .marquee-wrapper:hover .marquee-track {
+        .brands-marquee-wrapper:hover .brands-marquee-track {
           animation-play-state: paused;
         }
       `}</style>
@@ -76,10 +76,10 @@ export default function BrandsStrip() {
           </p>
         </div>
 
-        {/* overflow-hidden clips the strip; marquee-wrapper enables hover-pause */}
-        <div className="overflow-hidden marquee-wrapper">
+        {/* overflow-hidden clips the strip; brands-marquee-wrapper enables hover-pause */}
+        <div className="overflow-hidden brands-marquee-wrapper">
           <div
-            className="marquee-track flex gap-12"
+            className="brands-marquee-track flex gap-12"
             style={{ width: "max-content" }}
           >
             {ITEMS.map((item, i) => (
