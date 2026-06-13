@@ -198,19 +198,19 @@ export default function HeroSection() {
         0
       );
 
-      // 3. Carousel container fades and slides in from bottom between 70% to 100%
+      // 3. Carousel container fades and slides in from bottom between 50% to 100%
       tl.fromTo(
         carouselContainerRef.current,
         {
-          autoAlpha: 0,
-          y: 100,
+          autoAlpha: 0.5,
+          y: 25,
         },
         {
           autoAlpha: 1,
-          y: 0,
-          ease: "power3.out",
+          y: -50,
+          ease: "power2.out",
         },
-        0.75
+        0.5
       );
     };
 
@@ -293,7 +293,7 @@ export default function HeroSection() {
         <div
           ref={carouselContainerRef}
           className="relative z-10 w-full"
-          style={{ opacity: 0 }}
+          style={{ opacity: 0.5, transform: "translateY(25px)" }}
         >
           <div className="container text-center mb-4">
             <span className="text-xs font-mono text-[var(--color-muted)] tracking-widest uppercase">
