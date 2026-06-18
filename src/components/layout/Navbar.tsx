@@ -50,7 +50,7 @@ export default function Navbar() {
       <nav className={`navbar ${scrolled ? "scrolled" : ""}`}>
         <div className="container h-full flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group" style={{ cursor: "none" }}>
+          <Link href="/" className="flex items-center gap-2 group">
             <div className="w-10 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center transition-transform duration-300 group-hover:rotate-12">
               <span className="text-white font-bold text-xs font-mono tracking-widest">SIA</span>
             </div>
@@ -83,7 +83,6 @@ export default function Navbar() {
             <button
               onClick={() => setMenuOpen(!menuOpen)}
               className="lg:hidden p-2 rounded-lg border border-[var(--color-border)] text-[var(--color-ink)]"
-              style={{ cursor: "none" }}
               aria-label="Toggle menu"
             >
               {menuOpen ? <X size={20} /> : <Menu size={20} />}
@@ -119,7 +118,6 @@ export default function Navbar() {
         <button
           onClick={() => setMenuOpen(false)}
           className="absolute top-6 right-6 p-2 text-white opacity-60 hover:opacity-100 transition-opacity"
-          style={{ cursor: "none" }}
           aria-label="Close menu"
         >
           <X size={24} />

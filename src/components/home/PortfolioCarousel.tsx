@@ -10,12 +10,9 @@ const N = projects.length; // 5
 const CARD_GAP = 20;
 
 // 3x repeat to allow seamless infinite peeking loop:
-// Block 0: indices 0..4 (clones)
-// Block 1: indices 5..9 (real)
-// Block 2: indices 10..14 (clones)
 const EXTENDED = [...projects, ...projects, ...projects];
 
-export default function PortfolioCarousel() {
+export default function PortfolioCarousel({ dark = false }: { dark?: boolean }) {
   const [extIndex, setExtIndex] = useState(5); // Start at index 5 (first real item)
   const [isPaused, setIsPaused] = useState(false);
   const isAnimatingRef = useRef(false);
@@ -115,12 +112,10 @@ export default function PortfolioCarousel() {
         onComplete: () => {
           let finalExt = targetExt;
           if (targetExt < N) {
-            // targetExt is between 0 and 4. Snap to targetExt + N (between 5 and 9).
             finalExt = targetExt + N;
             gsap.set(trackRef.current, { x: computeOffset(finalExt) });
             applyCardStyles(finalExt, false);
           } else if (targetExt >= 2 * N) {
-            // targetExt is between 10 and 14. Snap to targetExt - N (between 5 and 9).
             finalExt = targetExt - N;
             gsap.set(trackRef.current, { x: computeOffset(finalExt) });
             applyCardStyles(finalExt, false);
@@ -203,7 +198,6 @@ export default function PortfolioCarousel() {
     return () => window.removeEventListener("keydown", h);
   }, [extIndex, prev, next]);
 
-  // ── Render ───────────────────────────────────────────────────────────────────
   return (
     <div className="w-full">
       {/* SVG burn filter */}
@@ -240,14 +234,14 @@ export default function PortfolioCarousel() {
         onMouseEnter={() => setIsPaused(true)}
         onMouseLeave={() => setIsPaused(false)}
       >
-        {/* Sliding track — burn filter lives here */}
+        {/* Sliding track */}
         <div
           ref={trackRef}
           className="absolute top-0 h-full flex"
           style={{ gap: `${CARD_GAP}px`, filter: "url(#portfolio-burn)", transformStyle: "preserve-3d" }}
         >
           {EXTENDED.map((project, i) => {
-            const pos = i - extIndex; // -1 = left, 0 = center, +1 = right
+            const pos = i - extIndex;
             const isActive = pos === 0;
 
             const tiltY = pos === 0 ? 0 : pos < 0 ? 12 : -12;
@@ -274,7 +268,6 @@ export default function PortfolioCarousel() {
                   transform: `perspective(1200px) rotateY(${tiltY}deg) scale(${scale})`,
                   zIndex,
                   boxShadow: shadow,
-                  cursor: "none",
                 }}
               >
                 <Image
@@ -305,7 +298,6 @@ export default function PortfolioCarousel() {
                     href={project.url}
                     target="_blank"
                     rel="noopener noreferrer"
-                    style={{ cursor: "none" }}
                     className={`inline-flex items-center gap-1.5 mt-3 text-xs text-white/70 hover:text-white border border-white/20 hover:border-white/60 px-3 py-1.5 rounded-full transition-all duration-300 ${
                       isActive ? "opacity-100" : "opacity-0 pointer-events-none"
                     }`}
@@ -322,11 +314,11 @@ export default function PortfolioCarousel() {
         {/* Edge gradient fades */}
         <div
           className="absolute left-0 top-0 bottom-0 w-14 md:w-24 pointer-events-none z-10"
-          style={{ background: "linear-gradient(to right, var(--color-bg), transparent)" }}
+          style={{ background: `linear-gradient(to right, ${dark ? "#0a0a0a" : "var(--color-bg)"}, transparent)` }}
         />
         <div
           className="absolute right-0 top-0 bottom-0 w-14 md:w-24 pointer-events-none z-10"
-          style={{ background: "linear-gradient(to left, var(--color-bg), transparent)" }}
+          style={{ background: `linear-gradient(to left, ${dark ? "#0a0a0a" : "var(--color-bg)"}, transparent)` }}
         />
       </div>
 
@@ -335,8 +327,11 @@ export default function PortfolioCarousel() {
         <button
           onClick={prev}
           aria-label="Previous project"
-          style={{ cursor: "none" }}
-          className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center text-sm text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300"
+          className={`w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-all duration-300 ${
+            dark
+              ? "border-white/15 text-white/50 hover:border-white hover:text-white"
+              : "border-[var(--color-border)] text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          }`}
         >
           ←
         </button>
@@ -347,11 +342,14 @@ export default function PortfolioCarousel() {
               key={i}
               onClick={() => goTo(i + N)}
               aria-label={`Project ${i + 1}`}
-              style={{ cursor: "none" }}
               className={`h-1 rounded-full transition-all duration-500 ${
                 i === realIndex
-                  ? "w-8 bg-[var(--color-accent)]"
-                  : "w-3 bg-[var(--color-border)]"
+                  ? dark
+                    ? "w-8 bg-[#7F77DD]"
+                    : "w-8 bg-[var(--color-accent)]"
+                  : dark
+                    ? "w-3 bg-white/10"
+                    : "w-3 bg-[var(--color-border)]"
               }`}
             />
           ))}
@@ -360,8 +358,11 @@ export default function PortfolioCarousel() {
         <button
           onClick={next}
           aria-label="Next project"
-          style={{ cursor: "none" }}
-          className="w-8 h-8 rounded-full border border-[var(--color-border)] flex items-center justify-center text-sm text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] transition-all duration-300"
+          className={`w-8 h-8 rounded-full border flex items-center justify-center text-sm transition-all duration-300 ${
+            dark
+              ? "border-white/15 text-white/50 hover:border-white hover:text-white"
+              : "border-[var(--color-border)] text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]"
+          }`}
         >
           →
         </button>
@@ -371,8 +372,11 @@ export default function PortfolioCarousel() {
       <div className="flex justify-center mt-4">
         <Link
           href="/work"
-          style={{ cursor: "none" }}
-          className="text-xs text-[var(--color-muted)] hover:text-[var(--color-accent)] font-mono tracking-widest uppercase transition-colors duration-300"
+          className={`text-xs font-mono tracking-widest uppercase transition-colors duration-300 ${
+            dark
+              ? "text-white/40 hover:text-white"
+              : "text-[var(--color-muted)] hover:text-[var(--color-accent)]"
+          }`}
         >
           View All Work →
         </Link>

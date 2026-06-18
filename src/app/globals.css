@@ -52,7 +52,6 @@ body {
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
-  cursor: none; /* custom cursor takes over */
 }
 
 /* ─────────────────────────────────────────
@@ -221,15 +220,21 @@ p { color: var(--color-muted); line-height: 1.75; }
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  padding: 0.75rem 1.75rem;
+  padding: 0.55rem 1.25rem;
   font-family: var(--font-body);
-  font-size: 0.9375rem;
+  font-size: 0.85rem;
   font-weight: 500;
   border-radius: 6px;
   overflow: hidden;
   transition: color 0.3s ease, transform 0.2s ease;
-  cursor: none;
   isolation: isolate;
+}
+
+@media (min-width: 768px) {
+  .btn {
+    padding: 0.75rem 1.75rem;
+    font-size: 0.9375rem;
+  }
 }
 
 .btn::before {
@@ -333,7 +338,6 @@ p { color: var(--color-muted); line-height: 1.75; }
               border-color 0.3s ease;
   position: relative;
   overflow: hidden;
-  cursor: none;
 }
 
 .service-card::before {
@@ -479,7 +483,7 @@ p { color: var(--color-muted); line-height: 1.75; }
 
 .mobile-menu-link {
   font-family: var(--font-display);
-  font-size: clamp(2.5rem, 6vw, 4rem);
+  font-size: clamp(1.6rem, 5vw, 2.5rem);
   font-weight: 600;
   color: #fff;
   text-decoration: none;
@@ -539,7 +543,6 @@ p { color: var(--color-muted); line-height: 1.75; }
   position: relative;
   overflow: hidden;
   border-radius: 12px;
-  cursor: none;
 }
 
 .portfolio-grid-card img {
@@ -569,7 +572,6 @@ p { color: var(--color-muted); line-height: 1.75; }
 .team-card {
   perspective: 1000px;
   height: 360px;
-  cursor: none;
 }
 
 .team-card-inner {
@@ -656,7 +658,6 @@ p { color: var(--color-muted); line-height: 1.75; }
   border: 1px solid var(--color-border);
   color: var(--color-muted);
   transition: transform 0.3s ease, color 0.2s ease, border-color 0.2s ease;
-  cursor: none;
 }
 
 .social-icon:hover {
@@ -755,7 +756,6 @@ p { color: var(--color-muted); line-height: 1.75; }
   color: var(--color-ink);
   background: none;
   border: none;
-  cursor: none;
   text-align: left;
 }
 
@@ -791,7 +791,6 @@ p { color: var(--color-muted); line-height: 1.75; }
   text-decoration: none;
   font-size: 0.9375rem;
   transition: color 0.2s ease;
-  cursor: none;
 }
 
 .footer-link:hover { color: #fff; }
@@ -812,7 +811,6 @@ p { color: var(--color-muted); line-height: 1.75; }
   box-shadow: 0 8px 24px rgba(37,211,102,0.4);
   z-index: 200;
   transition: transform 0.3s ease, box-shadow 0.3s ease;
-  cursor: none;
   text-decoration: none;
 }
 

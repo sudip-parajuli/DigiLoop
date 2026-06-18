@@ -1,13 +1,18 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect } from "react";
 
-export function useRevealSystem() {
+export function useRevealSystem(pathname: string) {
   useEffect(() => {
+    const activeTriggers: any[] = [];
+
     const init = async () => {
       const { gsap } = await import("gsap");
       const { ScrollTrigger } = await import("gsap/ScrollTrigger");
       gsap.registerPlugin(ScrollTrigger);
+
+      // Force a refresh so heights are correct before initializing triggers
+      ScrollTrigger.refresh();
 
       const elements = document.querySelectorAll("[data-reveal]");
 
@@ -35,7 +40,10 @@ export function useRevealSystem() {
             break;
         }
 
-        gsap.fromTo(
+        // Reset element inline styles in case they were previously animated
+        gsap.set(el, { clearProps: "all" });
+
+        const tween = gsap.fromTo(
           el,
           fromVars,
           {
@@ -54,9 +62,25 @@ export function useRevealSystem() {
             },
           }
         );
+
+        if (tween.scrollTrigger) {
+          activeTriggers.push(tween.scrollTrigger);
+        }
       });
     };
 
-    init();
-  }, []);
+    // Delay initialization slightly to let Next.js route transition settle
+    const timer = setTimeout(() => {
+      init();
+    }, 150);
+
+    return () => {
+      clearTimeout(timer);
+      activeTriggers.forEach((trigger) => {
+        if (trigger && typeof trigger.kill === "function") {
+          trigger.kill();
+        }
+      });
+    };
+  }, [pathname]);
 }
