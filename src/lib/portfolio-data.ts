@@ -76,4 +76,27 @@ export const projects = [
     url: 'https://amicus.com.np',
     year: '2025',
   },
+  {
+    id: 'kb-resort',
+    title: 'Kwality Beach Resort',
+    subtitle: 'Tranquil Riverside Resort',
+    category: 'Web Design',
+    tags: ['HTML', 'CSS', 'GSAP', 'Responsive'],
+    image: '/images/projects/kb-resort.jpg',
+    color: '#0A2E2F',
+    url: 'https://rbresortredesign.vercel.app/',
+    year: '2026',
+  },
+  {
+    id: 'five-star-hotel',
+    title: 'Five Star Hotel',
+    subtitle: 'Premium Hospitality Platform',
+    category: 'Web Design',
+    tags: ['Next.js', 'TailwindCSS', 'Booking System'],
+    image: '/images/projects/five-star-hotel.jpg',
+    color: '#2B1E10',
+    url: 'https://5starhotelsample.vercel.app/',
+    year: '2026',
+  },
 ];
+

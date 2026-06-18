@@ -74,6 +74,26 @@ const projects = [
     color: "#0B1528",
     span: "",
     image: "/images/projects/techwired.jpg"
+  },
+  {
+    id: 15,
+    title: "Kwality Beach Resort",
+    category: "Web",
+    tags: ["HTML", "CSS", "GSAP", "Responsive"],
+    url: "https://rbresortredesign.vercel.app/",
+    color: "#0A2E2F",
+    span: "",
+    image: "/images/projects/kb-resort.jpg"
+  },
+  {
+    id: 16,
+    title: "Five Star Hotel",
+    category: "Web",
+    tags: ["Next.js", "TailwindCSS", "Booking"],
+    url: "https://5starhotelsample.vercel.app/",
+    color: "#2B1E10",
+    span: "",
+    image: "/images/projects/five-star-hotel.jpg"
   }
 ];
 

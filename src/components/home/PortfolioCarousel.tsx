@@ -13,7 +13,7 @@ const CARD_GAP = 20;
 const EXTENDED = [...projects, ...projects, ...projects];
 
 export default function PortfolioCarousel({ dark = false }: { dark?: boolean }) {
-  const [extIndex, setExtIndex] = useState(5); // Start at index 5 (first real item)
+  const [extIndex, setExtIndex] = useState(N); // Start at index N (first real item)
   const [isPaused, setIsPaused] = useState(false);
   const isAnimatingRef = useRef(false);
   const trackRef = useRef<HTMLDivElement>(null);
@@ -85,11 +85,11 @@ export default function PortfolioCarousel({ dark = false }: { dark?: boolean }) 
     }
   }, []);
 
-  // Initialise at P0 (extIndex=5)
+  // Initialise at P0 (extIndex=N)
   useEffect(() => {
     const raf = requestAnimationFrame(() => {
-      snapTo(5);
-      applyCardStyles(5, false);
+      snapTo(N);
+      applyCardStyles(N, false);
     });
     return () => cancelAnimationFrame(raf);
   // eslint-disable-next-line react-hooks/exhaustive-deps
