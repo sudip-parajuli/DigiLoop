@@ -37,19 +37,12 @@ export default function AboutHero() {
         style={{ background: "radial-gradient(circle at 80% 50%, #4F46E5, transparent 60%)" }} />
       <div className="container">
         <span className="section-label mb-8 block">Our Story</span>
-        <div
+        <p
           ref={textRef}
-          className="max-w-4xl"
-          style={{
-            fontFamily: "var(--font-display)",
-            fontSize: "clamp(1.75rem, 4vw, 3rem)",
-            fontWeight: 500,
-            lineHeight: 1.25,
-            color: "var(--color-ink)",
-          }}
+          className="max-w-4xl text-lg text-[var(--color-muted)] leading-relaxed"
         >
           We are SIA Enterprises — a digital agency born in Nepal with a mission to help local and global brands build meaningful digital identities. We believe that great design is not a luxury. It&apos;s how you survive and thrive in the digital age.
-        </div>
+        </p>
       </div>
     </section>
   );

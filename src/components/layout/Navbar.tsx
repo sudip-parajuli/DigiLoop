@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { Menu, X } from "lucide-react";
 
@@ -51,15 +52,14 @@ export default function Navbar() {
         <div className="container h-full flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <div className="w-10 h-8 rounded-lg bg-[var(--color-accent)] flex items-center justify-center transition-transform duration-300 group-hover:rotate-12">
-              <span className="text-white font-bold text-xs font-mono tracking-widest">SIA</span>
-            </div>
-            <span
-              className="text-xl font-semibold text-[var(--color-ink)]"
-              style={{ fontFamily: "var(--font-display)" }}
-            >
-              SIA
-            </span>
+            <Image
+              src="/SIAlogodark.png"
+              alt="SIA Enterprises"
+              width={120}
+              height={36}
+              className="h-8 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              priority
+            />
           </Link>
 
           {/* Desktop Nav */}

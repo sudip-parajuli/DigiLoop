@@ -1,4 +1,5 @@
 import Link from "next/link";
+import Image from "next/image";
 import { MessageCircle } from "lucide-react";
 import { Instagram, Twitter, Linkedin, Youtube } from "@/components/ui/BrandIcons";
 
@@ -32,15 +33,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-2">
             <Link href="/" className="inline-flex items-center gap-2 mb-4 group" style={{ cursor: "none" }}>
-              <div className="w-10 h-8 rounded-lg bg-[var(--color-accent2)] flex items-center justify-center">
-                <span className="text-white font-bold text-xs font-mono tracking-widest">SIA</span>
-              </div>
-              <span
-                className="text-2xl font-semibold text-white"
-                style={{ fontFamily: "var(--font-display)" }}
-              >
-                SIA
-              </span>
+              <Image
+                src="/SIAlogo.png"
+                alt="SIA Enterprises"
+                width={140}
+                height={42}
+                className="h-10 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              />
             </Link>
             <p className="text-white/50 text-sm leading-relaxed max-w-xs mb-6">
               Empowering businesses through Strategy, Innovation & Analytics. Based in Kathmandu, Nepal.
